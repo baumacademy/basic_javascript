@@ -9,7 +9,7 @@ const age = prompt("how old are you? ");
 const job = prompt("what do you do for living? ");
 
 console.log(
-  "my name is " + name + " i am " + age + "years old" + "my job is " + job
+  "My name is " + name + ". I am " + age + " years old" + " my job is " + job
 );
 
 const favoriteFoods = ["pizza", "burgers", "steak", "sushi"];
