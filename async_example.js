@@ -1,9 +1,9 @@
-function getOrderFromAPI(status){
+function getOrderFromAPI(status) {
     return new Promise((resolve, reject) => {
         // assuming this is API call
         setTimeout(() => {
-            console.log("-----------in await function-----------")
-            if(status){
+            console.log("-----------in API function-----------")
+            if (status) {
                 resolve([
                     { orderId: 1001, userId: 1, productIds: [101, 103], totalAmount: 999.98, status: "Shipped" },
                     { orderId: 1002, userId: 2, productIds: [102], totalAmount: 599.99, status: "Pending" },
@@ -19,7 +19,7 @@ function getOrderFromAPI(status){
     })
 }
 
-async function retrieveOrders (status) {
+async function retrieveOrders(status) {
     console.log("-----------before await function-----------")
     // try with await and without await
     const orders = await getOrderFromAPI(status)
@@ -28,3 +28,17 @@ async function retrieveOrders (status) {
 }
 
 retrieveOrders(true)
+
+function retrieveOrdersV2(status) {
+    console.log("-----------before API call-----------")
+    getOrderFromAPI(status).then(function (data) {
+        console.log("-----------in .then call-----------")
+        return data
+    }).catch(function (error) {
+        console.log("-----------in .catch call-----------")
+        return error
+    })
+    console.log("-----------after API call-----------")
+}
+
+retrieveOrdersV2(false)
