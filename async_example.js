@@ -1,8 +1,7 @@
-function getOrderFromAPI(status) {
+const getOrderFromAPI = async (status) => {
     return new Promise((resolve, reject) => {
         // assuming this is API call
         setTimeout(() => {
-            console.log("-----------in API function-----------")
             if (status) {
                 resolve([
                     { orderId: 1001, userId: 1, productIds: [101, 103], totalAmount: 999.98, status: "Shipped" },
@@ -19,26 +18,9 @@ function getOrderFromAPI(status) {
     })
 }
 
-async function retrieveOrders(status) {
-    console.log("-----------before await function-----------")
-    // try with await and without await
+const retrieveOrders = async (status) => {
     const orders = await getOrderFromAPI(status)
-    console.log("-----------after await function-----------")
     return orders
 }
 
-retrieveOrders(true)
-
-function retrieveOrdersV2(status) {
-    console.log("-----------before API call-----------")
-    getOrderFromAPI(status).then(function (data) {
-        console.log("-----------in .then call-----------")
-        return data
-    }).catch(function (error) {
-        console.log("-----------in .catch call-----------")
-        return error
-    })
-    console.log("-----------after API call-----------")
-}
-
-retrieveOrdersV2(false)
+module.exports = retrieveOrders
